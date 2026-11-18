@@ -1,96 +1,156 @@
 # VigoBeatz SampQOL Stems + Grid64 Mod
 
-**Unofficial MPC Sample expansion — BETA**
+**Unofficial MPC Sample modification — BETA**
 
-This mod adds a four-part stem-separation workflow (**drums, bass, vocals, and other**) and grid zoom up to **1/64** to a compatible, existing **SampQOL OS v0.3.0** installation.
+Adds a four-part **stem separation** workflow (drums, bass, vocals, and other) and **1/64 grid zoom** to a compatible installation of **SampQOL OS v0.3.0**.
 
-Created by **VigoBeatz LLC** · [Website](https://vigobeatzmpc.web.app) · [YouTube](https://www.youtube.com/vigobeatz)
+Developed by **VigoBeatz LLC**  
+[Website](https://vigobeatzmpc.web.app) · [YouTube](https://www.youtube.com/vigobeatz)
 
-> **BETA:** The macOS launcher has opened successfully in user testing, but Windows installation and actual MPC Sample stem/grid operation are **not yet verified**. Use a spare SD card and back up your projects.
+> **Beta notice:** The macOS installer launcher has been opened successfully, and the installer has undergone simulated SD-card tests. Windows installation and operation on an actual MPC Sample have not yet been fully verified. **Use a spare SD card and back up your projects and card first.**
 
-## Important: SampQOL is not included
+## Download the mod
 
-This mod does **not** include a complete SampQOL distribution or unmodified original SampQOL binary. You must install **stock SampQOL OS v0.3.0** yourself before applying this mod.
+**All installer files and the mod payload are already in this repository.** You do **not** need to download a separate payload.
 
-The mod-only installer uses version-specific binary patches plus added stem-processing assets. It checks the original file hashes and rejects unsupported versions or previously modified files.
+1. At the top of this repository, click the green **Code** button.
+2. Select **Download ZIP**.
+3. Extract the ZIP fully to a folder on your computer.
+4. Follow the instructions below for your operating system.
 
-## Download
+Alternatively, clone the repository:
 
-Get the **complete mod-only installer ZIP** from VigoBeatz's authorized download location (link to be added when published). It must contain the `manifest.json` and `payload/` directory along with the installer scripts. **GitHub's source-code ZIP alone is not a functioning installer if the payload is absent.**
+```sh
+git clone https://github.com/AldanisVigo/VigoBeatz-SampQOL-Stems-Grid64-Mod.git
+```
 
-The complete package is larger than GitHub's 100 MB normal repository-file limit. The host installer requires no Python or Tkinter. The mod payload contains Linux ARM binaries and audio models used on the MPC Sample.
+**Important:** Keep the extracted folder structure intact. The installation scripts expect `manifest.json` and the `payload/` directory alongside them. Do not move the script out of the extracted folder or run it from inside an unextracted ZIP.
+
+### What's in this repository?
+
+```text
+VigoBeatz-SampQOL-Stems-Grid64-Mod/
+├── Install-Mac.command       # macOS launcher
+├── installer-mac.pl          # macOS installation and restore logic
+├── Install-Windows.ps1       # Windows PowerShell installer
+├── manifest.json            # Version checks and file hashes
+├── payload/
+│   ├── patches/             # Version-specific patches
+│   └── new/                 # Added mod files and stem components
+└── README.md
+```
+
+The repository provides **the mod and its installer, not the full original SampQOL OS**. You must install an authentic, unmodified SampQOL OS v0.3.0 on your SD card first.
 
 ## Requirements
 
-- Akai MPC Sample and SD card with **unmodified SampQOL OS v0.3.0**
-- Windows with PowerShell **or** macOS with its system Perl and required standard modules
-- The **complete, extracted** VigoBeatz mod-only ZIP
-- A separate backup of the entire SD card and projects
+- **Akai MPC Sample**.
+- SD card containing **stock (unmodified) SampQOL OS v0.3.0**.
+- A computer running **macOS or Windows** and an SD card reader.
+- Enough free space for the stem models, mod files, and backup.
+- A **separate full backup** of your SD card before installation.
 
-## Install on macOS
+The installation scripts require **no Python, Tkinter, or third-party installer application**. macOS uses its shell and system Perl; Windows uses PowerShell. The **MPC-side** stem processing payload contains native code and audio model files; “script-only” refers to the installer on your computer.
 
-1. Back up your whole SampQOL SD card and insert it into your Mac.
-2. Download and **extract** the complete mod-only installer ZIP.
-3. Open **Terminal** inside the extracted installer folder.
-4. Run:
+The installer checks original file hashes and will reject incompatible or previously modified SampQOL versions rather than patching them blindly.
 
-   ```sh
-   sh ./Install-Mac.command
-   ```
+## Installation — macOS
 
-5. Enter the **SD card root**, such as `/Volumes/NO NAME` (not `/Volumes/NO NAME/autorun`).
-6. Type `INSTALL` at the prompt.
-7. Wait for the success message, eject the SD card safely, and test on the MPC Sample.
+1. Install **unmodified SampQOL OS v0.3.0** onto the SD card using its official instructions.
+2. **Back up** the entire SD card on your Mac.
+3. Download this repository using **Code → Download ZIP** and extract it completely.
+4. Insert the SampQOL SD card into your Mac. Its path will usually look like `/Volumes/NO NAME` (your card name may differ).
+5. Open the extracted folder and double-click **`Install-Mac.command`**. If macOS blocks the script, follow the security instructions below.
+6. At the prompt, enter the **root of the SD card** (for example, `/Volumes/NO NAME`), **not** `/Volumes/NO NAME/autorun`.
+7. Type **`INSTALL`** and press Return.
+8. Allow the checks, backup, patching, and verification to complete. Look for a **SUCCESS** message before ejecting the card.
+9. Eject the SD card safely and test it on your MPC Sample.
 
-**Gatekeeper warning:** Finder may block unsigned `.command` files. Inspect the script and use the Terminal command above; alternatively, the **Open Anyway** control may appear in **System Settings → Privacy & Security**. Do **not** disable Gatekeeper globally.
+### macOS says it can't verify the script
 
-**macOS dependencies:** The script runs `/usr/bin/perl` and uses `JSON::PP`, `Digest::SHA`, `Compress::Zlib`, `File::Path`, `File::Copy`, and `File::Basename`. If these are not available, installation fails; nothing is downloaded automatically.
+Downloaded `.command` scripts sometimes trigger macOS security checks. **Do not disable Gatekeeper globally.** After reviewing the script, you can:
 
-## Install on Windows
+- Open **System Settings → Privacy & Security** and use **Open Anyway**, if macOS offers it; or
+- Open **Terminal**, navigate to the extracted repository folder, and run:
 
-1. Back up your whole SampQOL SD card and insert it into your Windows computer.
-2. Download and **extract** the complete mod-only ZIP.
-3. Open **PowerShell** in the extracted installer folder.
-4. Run:
+```sh
+sh ./Install-Mac.command
+```
 
-   ```powershell
-   powershell -NoProfile -ExecutionPolicy Bypass -File .\Install-Windows.ps1
-   ```
+The script still runs normally and prompts for the SD card location. macOS requires `/usr/bin/perl` and standard modules used by `installer-mac.pl`; it will report an error if they are not available.
 
-5. Enter the **SD card root**, for example `E:\` (not `E:\autorun`).
-6. Type `INSTALL` at the prompt.
-7. Wait for the success message, safely eject the card, and test on your MPC Sample.
+## Installation — Windows
 
-The execution-policy option applies only to the launched PowerShell process, not your global settings. **Windows install behavior is not yet validated.** Review scripts before running them.
+1. Install **unmodified SampQOL OS v0.3.0** onto the SD card using its official instructions.
+2. **Back up** the entire SD card on your PC.
+3. Download this repository using **Code → Download ZIP** and extract it completely.
+4. Insert the SD card and note its drive letter (such as `E:`).
+5. Open **PowerShell** in the extracted repository folder.
+6. Run:
 
-## Restore / uninstall
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\Install-Windows.ps1
+```
 
-To undo the mod, insert the same SD card and **run the same installer again**, but type **`RESTORE`** instead of `INSTALL`. The installer uses `VigoBeatz-Backup-SampQOL-v0.3.0` on the SD card to restore backed-up original files and remove files it created. Keep that backup directory intact until you have restored. Keep your separate full-card backup too.
+7. Enter the **root of the SD card** (for example, `E:\`) and type **`INSTALL`** when prompted.
+8. Wait for the **SUCCESS** message, safely eject the card, and test it on your MPC Sample.
+
+**Security note:** The `-ExecutionPolicy Bypass` switch applies only to the PowerShell process launched by that command; it does not permanently change your system-wide PowerShell settings. Review downloaded scripts before executing them. Windows installation is **beta/unverified**.
+
+## Restoring original SampQOL files (uninstall)
+
+The installer creates an on-card backup at:
+
+```text
+VigoBeatz-Backup-SampQOL-v0.3.0/
+```
+
+To undo the mod:
+
+1. Insert the same SD card and open the same installer folder on your computer.
+2. Launch **`Install-Mac.command`** on macOS or run **`Install-Windows.ps1`** on Windows using the instructions above.
+3. Enter the SD card root.
+4. When asked for an action, type **`RESTORE`** instead of `INSTALL`.
+5. Wait for the restoration message before safely ejecting the card.
+
+Restoration reverts the files backed up during installation and removes files created by the mod. **Do not delete the backup folder until you are sure you won't need it.** Keep your separate full SD-card backup as an additional safeguard.
+
+## How to use / verify the features
+
+**Stem separation:** The intended mod workflow generates four parts: **drums**, **bass**, **vocals**, and **other**. On the installed card, the stem-processing workflow uses a `Stems/` working area and can report status to `Stems/STATUS.txt`. Exact UI controls and pad assignments must be verified on actual MPC Sample hardware; do not rely on the host installation success message as proof the processing feature works.
+
+**Grid64:** The intended expanded grid zoom reaches **1/64**. Verify the selectable zoom values and playback/editing behavior on the device before relying on the mod for important projects.
 
 ## Troubleshooting
 
-| Issue | What to do |
+| Problem | What to do |
 | --- | --- |
-| SampQOL not found | Select the card **root**, not `autorun/`. |
-| Unsupported binary | Only the exact supported, unmodified SampQOL v0.3.0 file hash is accepted. |
-| Original file mismatch | Existing startup files differ; do not force-install. |
-| Existing backup detected | Run `RESTORE` before another installation attempt. |
-| Corrupt patch / asset mismatch | Re-extract the entire complete mod installer ZIP. |
-| Mac blocks the launcher | Inspect the script and launch from Terminal as shown above. |
-| Stems or grid features do not work on-device | Record firmware/version details and the reproduction steps; hardware behavior is not yet verified. |
+| “No SampQOL found” | Select the SD card **root**, not the `autorun` directory. |
+| “Unsupported SampQOL binary” | The installer only accepts the **exact stock v0.3.0 file hash** in `manifest.json`. |
+| “Original file mismatch” | Your installation differs from the expected stock release. Don't force the patch. |
+| “Existing backup detected” | Use the **RESTORE** operation first. |
+| “Corrupt patch”, “Asset mismatch”, or missing `payload/` | Re-extract the **complete GitHub repository ZIP** and keep its folder structure intact. |
+| macOS blocks `Install-Mac.command` | Review and run it through Terminal using the command above. |
+| Stems don't work after installation | Preserve your source sample; note the device firmware, SampQOL version, and any `Stems/STATUS.txt` or log messages. |
+| Need to remove the mod | Run the installer with **RESTORE**. |
 
-## Beta validation status
+## Compatibility and testing status
 
-| Area | Status |
+| Component | Status |
 | --- | --- |
-| macOS launcher | Confirmed to open in user testing |
-| Simulated SD-card installation and restoration | Previously tested |
-| Windows installation | Not yet verified |
-| On-device stems and 1/64 grid operation | Not yet verified |
-| Third-party model and runtime redistribution rights | Require review before public release |
+| Target SampQOL version | **v0.3.0**, exact stock hashes required |
+| macOS installer launch | **Confirmed to open** |
+| Simulated SD-card install and restore | Previously tested |
+| Windows installation | **Not yet hardware/host-verified** |
+| MPC Sample stem separation | **Not fully hardware-verified** |
+| MPC Sample 1/64 grid operation | **Not fully hardware-verified** |
 
-## Licensing and attribution
+Please report reproducible issues in the repository's [Issues](https://github.com/AldanisVigo/VigoBeatz-SampQOL-Stems-Grid64-Mod/issues) section. Include your host operating system, original SampQOL version, MPC firmware version, and the precise error message, but **do not post private files or personal information**.
 
-This is an **unofficial community project**, not affiliated with or endorsed by Akai, inMusic, or SampQOL's developer. No original SampQOL distribution is included. Original SampQOL files, third-party models, runtime binaries, and related components remain subject to their respective rights and licenses. Review the bundled third-party notices and independently confirm redistribution permissions before publishing the complete payload. ONNX Runtime notices alone do not establish the rights to redistribute the stem models.
+## Credits, rights, and disclaimer
 
-© VigoBeatz LLC — [vigobeatzmpc.web.app](https://vigobeatzmpc.web.app)
+This is an **unofficial community modification**, not affiliated with or endorsed by Akai, inMusic, or the SampQOL author. The original SampQOL software is **not bundled** here; users must obtain it separately.
+
+The included mod patch data, model files, and native dependencies may be subject to different licenses and redistribution requirements. Public GitHub availability does **not** override third-party rights. Review the licenses, notices, and permissions for each redistributed component before promoting a final public release.
+
+**VigoBeatz LLC** · [vigobeatzmpc.web.app](https://vigobeatzmpc.web.app)
