@@ -1,0 +1,48 @@
+{
+  "stock_sha256": "facea6b4ba33ba59a497ffaa5df00d21fa15828bf049bd8e854acf8f2883e7e3",
+  "modified_sha256": "7165fe47ddd6615c6628642cd6297c69408430d824d3562f866b5dfaae8b9c1e",
+  "files": {
+    "autorun/sampqol-stems/Models/bass.onnx": "de3c0359204b3dd76d0eefe144cfcefe106dd08a938048e62426d65dc921e86c",
+    "autorun/sampqol-stems/Models/drums.onnx": "73e8ba4462f434aa389263d71c21f58c27b5244482de0c99744699bc266a3a27",
+    "autorun/sampqol-stems/Models/other.onnx": "ba400917729fab8d62f5db8ebf58f680e7a522637176b3dac25779e441d794f8",
+    "autorun/sampqol-stems/Models/vocals.onnx": "01a036b4207d2a78294ef3885ba46012ae792f86547b2d25c10086decc0d2243",
+    "autorun/sampqol-stems/lib/libonnxruntime.so.1": "d9abfb42ddd120855f93ccb3c97a0918ac5bef209485db0dc3a36a3d188671ab",
+    "autorun/sampqol-stems/runtime.sha256": "226d2542b098ad30658dbfaf3995af9c61751e4b85fe67e168cb648d0bd4ff7f",
+    "autorun/sampqol-stems/stem-worker": "a6ed664a727a0b0260ed78783689a5592886385439da727f5d0d2ea3d264e7aa",
+    "autorun/sampqol-stems/stems-ui.so": "fafd14e0636127e80ddac1c6a837adaa666f2a43b4b34f41c1e24b9c9d900912",
+    "autorun/sampqol-stems/watch-stems.sh": "93558cf5587881310a318206fd51ca97cee2bd9de6d420b75b2bf4d0eb7a5b91",
+    "mpcqol.conf": "b1dce802fd7d84f687a5ef03c7b69a6b2dc675a3f02aea3a9a5ad69bb775a0d8"
+  },
+  "patches": {
+    "autorun/autorun.check": {
+      "before": "ae50e9c4e94d23a7e3035eacd9e3133e0bfa6b6d6748b667def4149c5a5d7ba7",
+      "after": "ded10c7fe9f2e2197e8625c6a9e2c13317e30b2c9728f8034b77c755ce06875c",
+      "payload": "patches/autorun__autorun.check.z",
+      "payload_sha256": "ecc8309c5e2b62624cb64eb72275a0fa6666643242ba85e770d9d02342fd230a"
+    },
+    "autorun/autorun.sh": {
+      "before": "83ddaf4be904fd1716b2f413bc261a34f9f9c581ed93b38080c842f52377aac4",
+      "after": "3847b6aeb140431db2ca0e07c02cd71577780f864fe9a5685ab2cfe46ce7b6f9",
+      "payload": "patches/autorun__autorun.sh.z",
+      "payload_sha256": "2824b724902bcb554c9131a875ff5bf2cf9f263462d4c3a0f0659462b49675be"
+    },
+    "autorun/mpcqol.so": {
+      "before": "facea6b4ba33ba59a497ffaa5df00d21fa15828bf049bd8e854acf8f2883e7e3",
+      "after": "7165fe47ddd6615c6628642cd6297c69408430d824d3562f866b5dfaae8b9c1e",
+      "payload": "patches/autorun__mpcqol.so.z",
+      "payload_sha256": "cdca713c1a2e7d8adddb4cd1c5cf44416f9349691eb637d00c59e1c69df93182"
+    },
+    "autorun/qol-run.sh": {
+      "before": "10234fd556cc270dc45c34b88b62a6aa59bf8aba7308e0e0b1261e05067c8872",
+      "after": "06b8e1d3ed78382458c4cbf65a7b8ac14e68b20bf58c5c5c06941131c42b7808",
+      "payload": "patches/autorun__qol-run.sh.z",
+      "payload_sha256": "125a502bd7d952a81416fc0725f9a4d375410f32b1af737c2fa42fba5a10ab65"
+    },
+    "autorun/qol-splash.raw": {
+      "before": "71b3d2240f1e54a911e7aee7fc0d2e95513b948bfffb6f73eec2621126c32177",
+      "after": "d777c121c4f574e40e0db689c9c01388cbaf40bb63555e3aa89071069401cb28",
+      "payload": "patches/autorun__qol-splash.raw.z",
+      "payload_sha256": "1a285c88a54ebec1422142c8acc4b867713b24f33cb97761278b4d9380ad123a"
+    }
+  }
+}
